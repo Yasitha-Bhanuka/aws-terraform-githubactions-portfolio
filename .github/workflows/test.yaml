@@ -8,7 +8,7 @@ on:
 
 jobs:
   log_message:
-  runs-on: ubuntu-latest
-  steps:
-    - name: Log message
-      run: echo "This is a test message from the GitHub Actions workflow working!."
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log message
+        run: echo "This is a test message from the GitHub Actions workflow working!."
