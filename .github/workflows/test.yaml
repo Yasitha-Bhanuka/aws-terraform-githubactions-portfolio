@@ -1,4 +1,4 @@
-name : Test
+name : Listing S3 Buckets
 
 on:
   push:
@@ -7,8 +7,18 @@ on:
   workflow_dispatch: 
 
 jobs:
-  log_message:
+  listing_buckets:
     runs-on: ubuntu-latest
-    steps:
-      - name: Log message
-        run: echo "This is a test message from the GitHub Actions workflow working!."
+    steps :
+      - name: Set up AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.IAM_ROLE }}
+          aws-region: ${{ secrets.AWS_REGION }}
+      
+      - name: List S3 Buckets
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_REGION }}
+        run:
+          echo "Listing S3 Buckets"
+          aws s3 ls
